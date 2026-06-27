@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Real-Time Chat</title>
+    <!-- Tailwind CSS للديزاين العصري -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- مكتبة SignalR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+</head>
+<body class="bg-slate-900 h-screen flex items-center justify-center font-sans text-white">
+
+    <!-- 1. شاشة الدخول (تظهر أولاً) -->
+    <div id="loginScreen" class="bg-slate-800 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-slate-700 transition-all">
+        <h2 class="text-2xl font-bold mb-6 text-center text-indigo-400">Welcome to LiveChat</h2>
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-slate-400 mb-2">Enter your name to join</label>
+                <input type="text" id="usernameInput" class="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white" placeholder="e.g. Ahmed">
+            </div>
+            <button id="joinBtn" class="w-full bg-indigo-600 hover:bg-indigo-500 py-3 rounded-xl font-semibold transition-all shadow-lg shadow-indigo-600/30">
+                Join Room
+            </button>
+        </div>
+    </div>
+
+    <!-- 2. شاشة الشات الرئيسية (مخفية في البداية) -->
+    <div id="chatScreen" class="hidden bg-slate-800 rounded-2xl shadow-2xl w-full max-w-5xl h-[85vh] border border-slate-700 flex overflow-hidden">
+        
+        <!-- الجزء الأيسر: قائمة المستخدمين المتصلين -->
+        <div class="w-1/4 bg-slate-850 border-r border-slate-700 p-4 flex flex-col">
+            <div class="mb-4">
+                <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Online Users</h3>
+            </div>
+            <!-- مكان عرض المستخدمين -->
+            <ul id="usersList" class="space-y-2 flex-1 overflow-y-auto">
+                <!-- الـ JS هيضيف اليوزرز هنا -->
+            </ul>
+            <div class="pt-4 border-t border-slate-700 text-xs text-slate-500 flex items-center justify-between">
+                <span>Status:</span>
+                <span id="connectionStatus" class="text-amber-500 font-medium">Connecting...</span>
+            </div>
+        </div>
+
+        <!-- الجزء الأيمن: صندوق المحادثة -->
+        <div class="w-3/4 flex flex-col h-full bg-slate-900/50">
+            <!-- الهيدر الخاص بالشات -->
+            <div class="p-4 border-b border-slate-700 bg-slate-800/50 flex justify-between items-center">
+                <h3 class="font-bold text-lg text-indigo-300">Global Chat Room</h3>
+                <span id="currentUserDisplay" class="text-sm text-slate-400 bg-slate-700/50 px-3 py-1 rounded-full"></span>
+            </div>
+
+            <!-- منطقة الرسائل -->
+            <div id="messagesContainer" class="flex-1 p-6 overflow-y-auto space-y-4">
+                <!-- الرسائل هتظهر هنا -->
+            </div>
+
+            <!-- إنبوت إرسال الرسالة -->
+            <div class="p-4 border-t border-slate-700 bg-slate-800/50">
+                <div class="flex gap-2">
+                    <input type="text" id="messageInput" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Type a message..." disabled>
+                    <button id="sendBtn" class="bg-indigo-600 hover:bg-indigo-500 px-6 rounded-xl font-semibold transition-all disabled:opacity-50" disabled>
+                        Send
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

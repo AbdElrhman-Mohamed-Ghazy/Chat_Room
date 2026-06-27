@@ -1,0 +1,8 @@
+## .NET Core
+**/bin/
+**/obj/
+**/.vs/
+
+## Web Client (لو شغال بجافا سكريبت)
+**/node_modules/
+**/.env
